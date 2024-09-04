@@ -1,0 +1,7 @@
+:root body {
+  top:0;
+  left:0;
+  margin: 0;
+  padding: 0;
+background: linear-gradient(90deg, rgb(252, 2, 102) 0%, rgb(133, 0, 58) 28%, rgb(0, 0, 0) 100%);
+}
