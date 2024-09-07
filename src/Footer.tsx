@@ -42,7 +42,7 @@ export const Footer = () => {
     pointerEvents: showFooter ? 'auto' : 'none',
             }}
         >
-            Armughan Saeed . saeed@signatureapp.de . 0157 31 355 159 . Cologne,
+            Armughan Saeed • saeed@signatureapp.de • 0157 31 355 159 • Cologne,
             Germany  ♥
         </Space>
     )
