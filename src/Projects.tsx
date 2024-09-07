@@ -35,7 +35,7 @@ export const Projects = () => {
                     width: "100%",
                     justifyContent: "space-evenly",
                     flexDirection: isXs ? "column" : "row",
-                    paddingBottom: 24,
+                    paddingBottom: 80,
                     paddingTop: isXs ? 50 : 0,
                 }}
             >
