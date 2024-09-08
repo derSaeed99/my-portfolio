@@ -24,7 +24,7 @@ export const Projects = () => {
             }}
         >
             <Title
-                style={{ marginBottom: -16, color: "#fff", marginLeft: 20 }}
+                style={{ marginBottom: -26, color: "#fff", marginLeft: 20 }}
                 level={1}
             >
                 Projects

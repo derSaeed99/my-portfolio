@@ -11,6 +11,7 @@ const { useBreakpoint } = Grid
 export const HeroSection = () => {
     const screens = useBreakpoint()
     const isXs = screens.xs
+ 
     return (
         <Layout.Content
             style={{
@@ -56,29 +57,17 @@ export const HeroSection = () => {
                         alignItems: "center",
                     }}
                 >
-                    <div
-                        style={{
-                            width: "90%", // Adjust as needed
-                            height: "90vh",
-                            position: "relative",
-                            overflow: "hidden",
-                            maskImage:
-                                "radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%)",
-                            WebkitMaskImage:
-                                "radial-gradient(circle, rgba(0, 0, 0, 1) 10%, rgba(0, 0, 0, 0) 100%)",
-                        }}
-                    >
+                    
                         <Image
                             src={monkey}
                             alt="scientist-monkey"
-                            width={"100%"}
-                            height={"100%"}
+                            height={"90%"}
                             preview={false}
                             style={{
                                 objectFit: "cover",
                             }}
                         />
-                    </div>
+               
                 </div>
             </Space>
         </Layout.Content>
