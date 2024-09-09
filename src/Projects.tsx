@@ -1,11 +1,11 @@
 import { Card, Layout, Image, Space, Button, Grid } from "antd";
-import Title from "antd/es/typography/Title";
 import Text from "antd/es/typography/Text";
 import githubIcon from "./assets/github-icon.png";
 import agencyScreen from "./assets/agency.png";
 import ptottScreen from "./assets/ptott.png";
 import butaScreen from "./assets/buta.png";
 import { ExportOutlined } from "@ant-design/icons";
+import { TypingText } from "./TypingText";
 
 const { useBreakpoint } = Grid;
 
@@ -16,19 +16,13 @@ export const Projects = () => {
     return (
         <Layout.Content
             style={{
-                height: "120vh",
                 display: "flex",
                 alignItems: "flex-start",
                 justifyContent: "space-evenly",
                 flexDirection: "column",
             }}
         >
-            <Title
-                style={{ marginBottom: -26, color: "#fff", marginLeft: 20 }}
-                level={1}
-            >
-                Projects
-            </Title>
+            <Space>{TypingText({text:"Projects"})}</Space>
             <Space
                 style={{
                     display: "flex",
@@ -36,7 +30,7 @@ export const Projects = () => {
                     justifyContent: "space-evenly",
                     flexDirection: isXs ? "column" : "row",
                     paddingBottom: 80,
-                    paddingTop: isXs ? 50 : 0,
+                    paddingTop: 50,
                 }}
             >
                 <Card
