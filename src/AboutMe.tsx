@@ -15,7 +15,7 @@ export const AboutMe = () => {
     return (
         <Layout.Content
             style={{
-                height: isXs ? "120vh" : "100vh",
+                minHeight: isXs ? "120vh" : "100vh",
                 display: "flex",
                 justifyContent: "center",
                 alignItems: "center",

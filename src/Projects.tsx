@@ -25,6 +25,7 @@ export const Projects = () => {
             <Space>{TypingText({text:"Projects"})}</Space>
             <Space
                 style={{
+                    minHeight: "100vh",
                     display: "flex",
                     width: "100%",
                     justifyContent: "space-evenly",

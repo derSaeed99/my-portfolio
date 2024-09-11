@@ -1,7 +1,8 @@
 :root body {
   top:0;
   left:0;
+  min-height: 100%;
   margin: 8;
   padding: 8;
-  background: linear-gradient(90deg, rgb(54, 0, 34) 0%, rgb(97, 0, 82) 50%, rgba(46,46,46,1) 100%);
+  background: rgb(97, 0, 82);
 }

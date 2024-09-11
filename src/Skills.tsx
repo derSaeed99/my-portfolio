@@ -42,7 +42,7 @@ export const Skills = () => {
                             <Title style={{ color: "#fff" }} level={3}>
                                 Typescript
                             </Title>
-                            <Image width={30} height={"100%"} preview={false} src={tsIcon} alt="ts-icon" style={{marginTop:8}} />
+                            <Image width={30} height={"100%"} preview={false} src={tsIcon} alt="ts-icon" style={{ marginTop: 8 }} />
                         </Space>
                     }
                     description={
@@ -57,11 +57,11 @@ export const Skills = () => {
             <Space>
                 <Card.Meta
                     title={
-                        <Space  align="center">
+                        <Space align="center">
                             <Title style={{ color: "#fff" }} level={3}>
                                 Google Cloud
                             </Title>
-                            <Image width={30} height={"100%"} preview={false} src={googleCloud} alt="gcloud-icon" style={{marginTop:12}} />
+                            <Image width={30} height={"100%"} preview={false} src={googleCloud} alt="gcloud-icon" style={{ marginTop: 12 }} />
                         </Space>
                     }
                     description={
@@ -73,9 +73,9 @@ export const Skills = () => {
                     }
                 />
             </Space>
-            <Space  style={{ width: "90%", background: "transparent" }}>
+            <Space style={{ width: "90%", background: "transparent" }}>
                 <Card.Meta
-                    title={<Space align="center"><Title style={{ color: "#fff" }} level={3}>Additional Skills</Title><Image width={30} height={"100%"} preview={false} src={skillIcon} alt="skills-icon" style={{marginTop:8}} /></Space>}
+                    title={<Space align="center"><Title style={{ color: "#fff" }} level={3}>Additional Skills</Title><Image width={30} height={"100%"} preview={false} src={skillIcon} alt="skills-icon" style={{ marginTop: 8 }} /></Space>}
                     description={
                         <Paragraph style={{ color: "#fff" }}>
                             Beyond my core expertise, I have a strong grasp of essential tools and practices that enhance the development process. I'm proficient with GitHub, where I manage code repositories, collaborate on projects, and streamline version control. I’m also experienced in using linting tools to ensure code quality and consistency across projects.

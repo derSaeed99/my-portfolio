@@ -14,7 +14,7 @@ export const HeroSection = () => {
     return (
         <Layout.Content
             style={{
-                height: "100vh",
+                minHeight: "100vh",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "space-evenly",
