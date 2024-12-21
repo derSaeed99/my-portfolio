@@ -22,7 +22,7 @@ export const Projects = () => {
                 {TypingText({ text: "Projects" })}
             </Grid>
             <Grid item xs={12} sm={4}>
-                <Card sx={{ mx: 2, height: "100%" }}>
+                <Card sx={{ mx: 2, height: "100%", borderRadius: 2 }}>
                     <img
                         alt="example"
                         src={agencyScreen}
@@ -67,7 +67,7 @@ export const Projects = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
-                <Card sx={{ mx: 2, height: "100%" }}>
+                <Card sx={{ mx: 2, height: "100%", borderRadius: 2 }}>
                     <img
                         alt="example"
                         src={ptottScreen}
@@ -113,7 +113,7 @@ export const Projects = () => {
                 </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
-                <Card sx={{ mx: 2, height: "100%" }}>
+                <Card sx={{ mx: 2, height: "100%", borderRadius: 2 }}>
                     <img
                         alt="example"
                         src={butaScreen}

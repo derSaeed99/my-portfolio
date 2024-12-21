@@ -6,6 +6,7 @@ import {
     IconButton,
     Grid,
     useTheme,
+    Divider,
 } from "@mui/material"
 import monkey from "./assets/top-monkey.svg"
 import { GitHub, LinkedIn, Mail } from "@mui/icons-material"
@@ -120,7 +121,6 @@ export const HeroSection = () => {
                             alignItems: "center",
                             justifyContent: "space-evenly",
                             borderRadius: 50,
-                            border: 1,
                             backgroundColor: theme.palette.primary.main,
                         }}
                     >
@@ -132,6 +132,7 @@ export const HeroSection = () => {
                                 sx={{ color: theme.palette.secondary.main }}
                             />
                         </motion.div>
+                        <Divider orientation="vertical" />
                         <motion.div whileTap={{ scale: 2 }}>
                             <Button
                                 target="_blank"
@@ -140,6 +141,7 @@ export const HeroSection = () => {
                                 sx={{ color: theme.palette.secondary.main }}
                             />
                         </motion.div>
+                        <Divider orientation="vertical" />
                         <motion.div whileTap={{ scale: 2 }}>
                             <Button
                                 onClick={handleClick}
