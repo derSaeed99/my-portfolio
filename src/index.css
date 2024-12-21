@@ -4,7 +4,7 @@
   min-height: 100%;
   margin: 10;
   padding: 10;
-  /* background: rgb(97, 0, 82); */
+  background: #DFC2F2;
   overflow-x: hidden;
   scroll-behavior: smooth;
 }
