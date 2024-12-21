@@ -129,7 +129,7 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://github.com/derSaeed99/"
                                 startIcon={<GitHub />}
-                                sx={{ color: "#fff" }}
+                                sx={{ color: theme.palette.secondary.main }}
                             />
                         </motion.div>
                         <motion.div whileTap={{ scale: 2 }}>
@@ -137,14 +137,14 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://www.linkedin.com/in/armughan-saeed-35a8692ba/"
                                 startIcon={<LinkedIn />}
-                                sx={{ color: "#fff" }}
+                                sx={{ color: theme.palette.secondary.main }}
                             />
                         </motion.div>
                         <motion.div whileTap={{ scale: 2 }}>
                             <Button
                                 onClick={handleClick}
                                 startIcon={<Mail />}
-                                sx={{ color: "#fff" }}
+                                sx={{ color: theme.palette.secondary.main }}
                             />
                             <Popover
                                 open={open}
