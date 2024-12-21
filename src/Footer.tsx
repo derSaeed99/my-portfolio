@@ -1,49 +1,44 @@
-import { Space } from "antd"
-import { useEffect, useState } from "react";
+import { Typography } from "@mui/material"
+import { Box } from "@mui/system"
+import { useEffect, useState } from "react"
 
 export const Footer = () => {
-    const [showFooter, setShowFooter] = useState(false);
+    const [isAtBottom, setIsAtBottom] = useState(false)
 
     useEffect(() => {
         const handleScroll = () => {
-          // Calculate if we're near the bottom of the page
-          const scrolledToBottom = window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 10;
-          
-          // Show or hide the footer based on scroll position
-          if (scrolledToBottom) {
-            setShowFooter(true);
-          } else {
-            setShowFooter(false);
-          }
-        };
-    
-        window.addEventListener('scroll', handleScroll);
-    
-        // Clean up the event listener when the component unmounts
+            // Check if the user is near the bottom of the page
+            const scrolledToBottom =
+                window.innerHeight + window.scrollY >=
+                document.documentElement.scrollHeight - 10
+
+            setIsAtBottom(scrolledToBottom)
+        }
+
+        window.addEventListener("scroll", handleScroll)
+
+        // Cleanup event listener
         return () => {
-          window.removeEventListener('scroll', handleScroll);
-        };
-      }, []);
+            window.removeEventListener("scroll", handleScroll)
+        }
+    }, [])
 
     return (
-        showFooter &&
-        <Space
-            style={{
-                paddingBottom: 10,
-                position: "fixed",
-                left: 0,
-                bottom: 0,
-                color: "white",
-                textAlign: "left",
-                paddingLeft: 20,
-                paddingRight: 20,
-                opacity: showFooter ? 1 : 0,
-    transition: 'opacity 0.5s ease-in-out',
-    pointerEvents: showFooter ? 'auto' : 'none',
+        <Box
+            sx={{
+                mt: 4,
+                textAlign: "center",
+                backgroundColor: "transparent",
+                padding: "16px",
+                opacity: isAtBottom ? 1 : 0.5,
+                transition: "opacity 0.3s ease-in-out",
             }}
         >
-            Armughan Saeed • saeed@signatureapp.de • 0157 31 355 159 • Cologne,
-            Germany  ♥
-        </Space>
+            <Typography color="primary">
+                {" "}
+                Armughan Saeed • saeed@signatureapp.de • 0157 31 355 159 •
+                Cologne, Germany ❤️
+            </Typography>
+        </Box>
     )
 }

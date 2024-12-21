@@ -1,79 +1,101 @@
-import { Layout, Space, Typography, Image, Grid } from "antd";
-import evolution from "./assets/evolution.png";
-import { motion } from "framer-motion";
-import { useState } from "react";
-import { TypingText } from "./TypingText";
-
-const { Paragraph, Text } = Typography;
-const { useBreakpoint } = Grid;
+import { Box, Typography, useTheme, Grid } from "@mui/material"
+import evolution from "./assets/evolution.png"
+import { motion } from "framer-motion"
+import { useState } from "react"
+import { TypingText } from "./TypingText"
 
 export const AboutMe = () => {
-    const [viewPort, setViewPort] = useState(false);
-    const screens = useBreakpoint();
-    const isXs = screens.xs;
+    const [viewPort, setViewPort] = useState(false)
+    const theme = useTheme()
+    const screens = theme.breakpoints.values
+    const isXs = screens.xs
 
     return (
-        <Layout.Content
-            style={{
-                minHeight: isXs ? "120vh" : "100vh",
+        <Grid
+            id="about"
+            container
+            sx={{
+                minHeight: "90vh",
                 display: "flex",
-                justifyContent: "center",
+                justifyContent: "space-around",
                 alignItems: "center",
-                flexDirection: isXs ? "column" : "row",
-                marginRight:16
+                overflowX: "hidden",
+                width: "100%",
             }}
         >
-            <Space align="start">
-                <motion.div
+            <Grid
+                item
+                xs={8}
+                sm={6}
+                sx={{
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                }}
+            >
+                <motion.img
                     transition={{
                         duration: 0.25,
                         delay: 0.2,
                     }}
                     initial={{ opacity: 0, x: 0 }}
-                    whileInView={{ opacity: viewPort ? 1 : 0, x: viewPort ? 0 : 10 }}
-                    animate={{ opacity: viewPort ? 1 : 0, x: viewPort ? 0 : 10 }}
+                    animate={{
+                        opacity: viewPort ? 1 : 0,
+                        x: viewPort ? 0 : 5,
+                    }}
                     onViewportEnter={() => setViewPort(true)}
                     onViewportLeave={() => setViewPort(false)}
-                >
-                    <Image
-                        src={evolution}
-                        alt="evolution-monkey"
-                        height={"90%"}
-                        width="300px"
-                        preview={false}
-                    />
-                </motion.div>
-            </Space>
-            <Space align="end" direction="vertical" size="small">
+                    src={evolution}
+                    alt="evolution-monkey"
+                    style={{
+                        width: "80%",
+                    }}
+                />
+            </Grid>
+            <Grid
+                item
+                xs={10}
+                sm={4}
+                sx={{
+                    display: "flex",
+                    flexDirection: "column",
+                    mx: isXs ? 2 : 0,
+                }}
+            >
                 <motion.div
+                    style={{ width: "100%" }}
                     transition={{
                         duration: 0.25,
                         delay: 0.2,
                     }}
-                    initial={{ opacity: 0, x: -50, dur: 1 }}
-                    whileInView={{ opacity: viewPort ? 1 : 0, x: viewPort ? 5 : 0 }}
-                    animate={{ opacity: viewPort ? 1 : 0, x: viewPort ? 5 : 0 }}
+                    initial={{ opacity: 0, x: 10, dur: 1 }}
+                    animate={{
+                        opacity: viewPort ? 1 : 0,
+                        x: viewPort ? 5 : 0,
+                    }}
                     onViewportEnter={() => setViewPort(true)}
                     onViewportLeave={() => setViewPort(false)}
-                    style={{ display:"flex", flexDirection:"column", alignItems:"flex-end" }}
                 >
-                    <Space>{TypingText({ text: "About Me" })}</Space>
-                    <Text style={{ fontSize: 18, marginBottom: 8, marginTop:24, color: "#fff", textAlign: "right" }}>
-                        Hi, I'm Saeed!
-                    </Text>
-                    <Paragraph style={{ color: "#fff", textAlign: "right" }}>
-                        I am a passionate developer specializing in React app development. I have experience in building web applications
-                        using React, Redux, and TypeScript.
-                    </Paragraph>
-                    <Paragraph style={{ color: "#fff", textAlign: "right" }}>
-                        Familiarity with Google Cloud's back-end technologies enables me to build full-stack applications for my clients, and I am
-                        driven by a desire to create original and innovative projects. I'm always eager to learn new technologies and continually improve my skills.
-                    </Paragraph>
-                    <Paragraph style={{ color: "#fff", textAlign: "right" }}>
-                        I am looking forward to working on exciting projects and collaborating with other developers.
-                    </Paragraph>
+                    <Box width="100%">{TypingText({ text: "About Me" })}</Box>
+                    <Typography variant="body1">Hi, I'm Saeed!</Typography>
+                    <Typography variant="body2">
+                        I am a passionate developer specializing in React app
+                        development. I have experience in building web
+                        applications using React, Redux, and TypeScript.
+                    </Typography>
+                    <Typography variant="body2">
+                        Familiarity with Google Cloud's back-end technologies
+                        enables me to build full-stack applications for my
+                        clients, and I am driven by a desire to create original
+                        and innovative projects. I'm always eager to learn new
+                        technologies and continually improve my skills.
+                    </Typography>
+                    <Typography variant="body2">
+                        I am looking forward to working on exciting projects and
+                        collaborating with other developers.
+                    </Typography>
                 </motion.div>
-            </Space>
-        </Layout.Content>
-    );
-};
+            </Grid>
+        </Grid>
+    )
+}

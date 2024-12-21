@@ -1,92 +1,116 @@
-import { Anchor, Space, Typography } from "antd";
-import { HeroSection } from "./HeroSection";
-import { AboutMe } from "./AboutMe";
-import { Skills } from "./Skills";
-import { Projects } from "./Projects";
-import monkey from "./assets/monkey.png";
-import { motion } from "framer-motion";
+import {
+    AppBar as MuiAppBar,
+    Box,
+    Typography,
+    Toolbar,
+    Button,
+} from "@mui/material"
+import CssBaseline from "@mui/material/CssBaseline"
+import useScrollTrigger from "@mui/material/useScrollTrigger"
+import Slide from "@mui/material/Slide"
+import { animate } from "framer-motion"
 
-const { Text } = Typography;
-export const AppBar = () => {
+interface Props {
+    window?: () => Window
+    children?: React.ReactElement<unknown>
+}
+
+function HideOnScroll(props: Props) {
+    const { children, window } = props
+    const trigger = useScrollTrigger({
+        target: window ? window() : undefined,
+    })
+
+    return (
+        <Slide appear={false} direction="down" in={!trigger}>
+            {children ?? <div />}
+        </Slide>
+    )
+}
+
+const scrollToSection = (id: string) => {
+    const element = document.getElementById(id)
+    if (element) {
+        const topPosition = element.offsetTop
+        animate(window.scrollY, topPosition, {
+            duration: 0.8,
+            ease: "easeInOut",
+            onUpdate: (latest) => window.scrollTo(0, latest),
+        })
+    }
+}
+
+export const AppBar = ({ ...props }: Props) => {
     return (
         <>
-            <Space
-                style={{
-                    display: "flex",
-                    flexDirection: "row",
-                    justifyContent: "space-between",
-                    alignItems: "center",
-                    backgroundColor: "transparent",
-                    position: "relative",
-                    zIndex: 2,
-                    height: 50,
-                }}
-            >
-                <Space align="start" style={{ marginLeft: 8 }}>
-                    <Anchor
-                        direction="horizontal"
-                        items={[
-                            {
-                                key: "home",
-                                href: "#home",
-                                title: <Text style={{ color: "#ffd743" }}>Home</Text>,
-                            },
-                            {
-                                key: "about",
-                                href: "#about",
-                                title: <Text style={{ color: "#ffd743" }}>About</Text>,
-                            },
-                            {
-                                key: "skills",
-                                href: "#skills",
-                                title: <Text style={{ color: "#ffd743" }}>Skills</Text>,
-                            },
-                            {
-                                key: "projects",
-                                href: "#projects",
-                                title: <Text style={{ color: "#ffd743" }}>Projects</Text>,
-                            },
-                        ]}
-                    />
-                </Space>
-            </Space>
-            <div id="home" style={{ position: 'relative', width: '100%' }}>
-                <HeroSection />
-            </div>
-            <div id="about" style={{ position: 'relative', width: '100%' }}>
-                <AboutMe />
-            </div>
-            <div style={{ position: 'relative', width: '100%' }} id="skills">
-        <motion.img
-          initial={{ y: -10 }}
-          animate={{ y: 10 }}
-          transition={{
-            type: 'smooth',
-            repeatType: 'mirror',
-            duration: 2,
-            repeat: Infinity,
-          }}
-          src={monkey}
-          alt="floater"
-          style={{
-            position: 'absolute',
-            top: '0%',  // Adjusted position to keep it balanced in view
-            left: '0%',
-            transform: 'translateX(-50%)',  // Centers the image horizontally
-            width: '100%',  // Half the width of the container
-            height: '100%',  // Maintain aspect ratio at half the height
-            objectFit: 'contain',  // Keeps the image fully visible without cropping
-            zIndex: -1,
-            opacity: 0.3, // Adjust to your preference
-          }}
-        />
-        <div style={{ position: 'relative', zIndex: 1 }}>
-          <Skills />
-        </div>
-    </div>
-            <div id="projects">
-                <Projects />
-            </div>
+            <CssBaseline />
+            <HideOnScroll {...props}>
+                <MuiAppBar
+                    position="sticky"
+                    sx={{
+                        backgroundColor: "transparent",
+                        zIndex: 2,
+                        boxShadow: "0",
+                    }}
+                >
+                    <Toolbar>
+                        <Box sx={{ display: "flex" }}>
+                            <Button
+                                variant="text"
+                                sx={{
+                                    marginLeft: 2,
+                                    textDecoration: "underline",
+                                    textTransform: "none",
+                                }}
+                                onClick={() => scrollToSection("home")}
+                            >
+                                <Typography variant="body1" color="primary">
+                                    home
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="text"
+                                sx={{
+                                    marginLeft: 2,
+                                    textDecoration: "underline",
+                                    textTransform: "none",
+                                }}
+                                onClick={() => scrollToSection("about")}
+                            >
+                                <Typography color="primary" variant="body1">
+                                    about
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="text"
+                                sx={{
+                                    marginLeft: 2,
+                                    textDecoration: "underline",
+                                    textTransform: "none",
+                                }}
+                                onClick={() => scrollToSection("skills")}
+                            >
+                                <Typography color="primary" variant="body1">
+                                    skills
+                                </Typography>
+                            </Button>
+                            <Button
+                                variant="text"
+                                sx={{
+                                    marginLeft: 2,
+                                    textDecoration: "underline",
+                                    textTransform: "none",
+                                }}
+                                onClick={() => scrollToSection("projects")}
+                            >
+                                <Typography color="primary" variant="body1">
+                                    projects
+                                </Typography>
+                            </Button>
+                        </Box>
+                    </Toolbar>
+                </MuiAppBar>
+            </HideOnScroll>
         </>
-    );
-};
+    )
+}

@@ -2,7 +2,9 @@
   top:0;
   left:0;
   min-height: 100%;
-  margin: 8;
-  padding: 8;
-  background: rgb(97, 0, 82);
+  margin: 10;
+  padding: 10;
+  /* background: rgb(97, 0, 82); */
+  overflow-x: hidden;
+  scroll-behavior: smooth;
 }

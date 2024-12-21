@@ -1,96 +1,218 @@
-import { Button, Grid, Image, Layout, Popover, Space, Typography } from "antd";
-import monkey from "./assets/top-monkey.svg";
-import { GithubOutlined, LinkedinOutlined, MailOutlined } from "@ant-design/icons";
-import { motion } from "framer-motion";
-import { useState } from "react";
-
-const { useBreakpoint } = Grid;
+import {
+    Button,
+    Typography,
+    Box,
+    Popover,
+    IconButton,
+    Grid,
+    useTheme,
+} from "@mui/material"
+import monkey from "./assets/top-monkey.svg"
+import { GitHub, LinkedIn, Mail } from "@mui/icons-material"
+import { motion } from "framer-motion"
+import { useState } from "react"
+import CheckIcon from "@mui/icons-material/Check"
+import { BananaIcon } from "./utils/BananaIcon"
 
 export const HeroSection = () => {
-    const [viewPort, setViewPort] = useState(false);
-    const screens = useBreakpoint();
-    const isXs = screens.xs;
+    const theme = useTheme()
+    const [viewPort, setViewPort] = useState(false)
+    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
 
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+        setAnchorEl(event.currentTarget)
+    }
+
+    const handleClose = () => {
+        setAnchorEl(null)
+    }
+    const open = Boolean(anchorEl)
+
+    const [copied, setCopied] = useState(false)
+
+    const handleCopy = () => {
+        navigator.clipboard.writeText("saeed@signatureapp.de").then(() => {
+            setCopied(true)
+            setTimeout(() => {
+                setCopied(false)
+            }, 2000)
+        })
+    }
     return (
-        <Layout.Content
-            style={{
-                minHeight: "100vh",
+        <Grid
+            id="home"
+            container
+            sx={{
                 display: "flex",
                 alignItems: "center",
-                justifyContent: "space-evenly",
-                flexDirection: isXs ? "column" : "row",
+                justifyContent: "space-between",
+                minHeight: "90vh",
             }}
         >
-            <Space align="start" direction="vertical" size="small" style={{ marginLeft: !isXs ? 8 : 0 }}>
-                <Typography.Title level={1} style={{ marginBottom: 0, color: "#fff", display: "flex" }}>
+            <Grid item xs={12} sm={6}>
+                <Typography
+                    gutterBottom
+                    variant={"h4"}
+                    align="right"
+                    sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        mt: 2,
+                        mr: 2,
+                        fontWeight: "bold",
+                    }}
+                >
                     Well, hello there!{" "}
                     <motion.div
                         initial={{ opacity: 0, x: 0 }}
-                        whileInView={{ opacity: viewPort ? 1 : 0, x: viewPort ? 0 : 50 }}
-                        animate={{ opacity: viewPort ? 1 : 0, x: viewPort ? 0 : 50 }}
+                        whileInView={{
+                            opacity: viewPort ? 1 : 0,
+                            x: viewPort ? 0 : 50,
+                        }}
+                        animate={{
+                            opacity: viewPort ? 1 : 0,
+                            x: viewPort ? 0 : 50,
+                        }}
                         onViewportEnter={() => setViewPort(true)}
                         onViewportLeave={() => setViewPort(false)}
                     >
                         🤙
                     </motion.div>
-                    ,
-                </Typography.Title>
-                <Typography.Text style={{ fontSize: 24, color: "#fff" }}>I'm a Web Developer</Typography.Text>
-                <Typography.Text style={{ fontSize: 24, color: "#fff" }}>
-                    I make Apps for Web...you want one? ↓ 😉
-                </Typography.Text>
-                <Space style={{ width: "100%", marginTop: 18, marginLeft: !isXs ? 300 : 0, color: "#fff" }} size="large">
-                    <motion.div whileTap={{ scale: 2 }}>
-                        <Button
-                            target="_blank"
-                            href="https://github.com/derSaeed99/"
-                            icon={<GithubOutlined style={{ color: "#500055" }} />}
-                        />
-                    </motion.div>
-                    <motion.div whileTap={{ scale: 2 }}>
-                        <Button
-                            target="_blank"
-                            href="https://www.linkedin.com/in/armughan-saeed-35a8692ba/"
-                            icon={<LinkedinOutlined style={{ color: "#500055" }} />}
-                        />
-                    </motion.div>
-                    <motion.div whileTap={{ scale: 2 }}>
-                        <Button
-                            icon={
-                                <Popover
-                                    content={<Typography color="#000000">saeed@signatureapp.de</Typography>}
-                                    title={<Typography.Text color="black">Write me!</Typography.Text>}
+                </Typography>
+                <Typography
+                    gutterBottom
+                    variant="h5"
+                    sx={{ mr: 2, display: "flex", justifyContent: "flex-end" }}
+                >
+                    I'm a Web Developer
+                </Typography>
+                <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                        display: "flex",
+                        justifyContent: "flex-end",
+                        mr: 2,
+                    }}
+                >
+                    I make Apps for Web
+                </Typography>
+                <Typography
+                    variant="h5"
+                    gutterBottom
+                    sx={{
+                        mr: 2,
+                        color: "black",
+                        display: "flex",
+                        justifyContent: "flex-end",
+                    }}
+                >
+                    ...you want one? ↓ 😉
+                </Typography>
+                <Grid
+                    item
+                    xs={12}
+                    sx={{ display: "flex", justifyContent: "flex-end", mr: 2 }}
+                >
+                    <Box
+                        sx={{
+                            display: "flex",
+                            alignItems: "center",
+                            justifyContent: "space-evenly",
+                            borderRadius: 50,
+                            border: 1,
+                            backgroundColor: theme.palette.primary.main,
+                        }}
+                    >
+                        <motion.div whileTap={{ scale: 2 }}>
+                            <Button
+                                target="_blank"
+                                href="https://github.com/derSaeed99/"
+                                startIcon={<GitHub />}
+                                sx={{ color: "#fff" }}
+                            />
+                        </motion.div>
+                        <motion.div whileTap={{ scale: 2 }}>
+                            <Button
+                                target="_blank"
+                                href="https://www.linkedin.com/in/armughan-saeed-35a8692ba/"
+                                startIcon={<LinkedIn />}
+                                sx={{ color: "#fff" }}
+                            />
+                        </motion.div>
+                        <motion.div whileTap={{ scale: 2 }}>
+                            <Button
+                                onClick={handleClick}
+                                startIcon={<Mail />}
+                                sx={{ color: "#fff" }}
+                            />
+                            <Popover
+                                open={open}
+                                anchorEl={anchorEl}
+                                onClose={handleClose}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "center",
+                                }}
+                                sx={{ width: "100%" }}
+                            >
+                                <Typography
+                                    color="#000000"
+                                    sx={{
+                                        m: 2,
+                                        display: "flex",
+                                        alignItems: "center",
+                                    }}
                                 >
-                                    <MailOutlined style={{ color: "#500055" }} />
-                                </Popover>
-                            }
-                        />
-                    </motion.div>
-                </Space>
-            </Space>
-
-            <Space align="end">
-                <div
-                    style={{
+                                    saeed@signatureapp.de{" "}
+                                    <IconButton
+                                        onClick={handleCopy}
+                                        sx={{
+                                            ml: 2,
+                                            display: "flex",
+                                            alignItems: "center",
+                                        }}
+                                    >
+                                        {copied ? (
+                                            <CheckIcon
+                                                sx={{ color: "green" }}
+                                            />
+                                        ) : (
+                                            <BananaIcon />
+                                        )}
+                                    </IconButton>
+                                </Typography>
+                            </Popover>
+                        </motion.div>
+                    </Box>
+                </Grid>
+            </Grid>
+            <Grid
+                item
+                xs={12}
+                sm={6}
+                sx={{ display: "flex", justifyContent: "flex-end" }}
+            >
+                <Box
+                    sx={{
                         width: "100%",
-                        height: "90vh",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
                     }}
                 >
-                    <Image
+                    <img
                         src={monkey}
                         alt="scientist-monkey"
                         height={"90%"}
-                        preview={false}
                         style={{
                             objectFit: "cover",
                             overflow: "hidden",
+                            fill: "black",
                         }}
                     />
-                </div>
-            </Space>
-        </Layout.Content>
-    );
-};
+                </Box>
+            </Grid>
+        </Grid>
+    )
+}
