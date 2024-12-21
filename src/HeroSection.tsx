@@ -12,7 +12,7 @@ import { GitHub, LinkedIn, Mail } from "@mui/icons-material"
 import { motion } from "framer-motion"
 import { useState } from "react"
 import CheckIcon from "@mui/icons-material/Check"
-import { BananaIcon } from "./utils/BananaIcon"
+import ContentCopyIcon from "@mui/icons-material/ContentCopy"
 
 export const HeroSection = () => {
     const theme = useTheme()
@@ -154,10 +154,16 @@ export const HeroSection = () => {
                                     vertical: "top",
                                     horizontal: "center",
                                 }}
-                                sx={{ width: "100%" }}
+                                sx={{
+                                    width: "100%",
+                                    "& .MuiPopover-paper": {
+                                        backgroundColor:
+                                            theme.palette.primary.main,
+                                    },
+                                }}
                             >
                                 <Typography
-                                    color="#000000"
+                                    color="textSecondary"
                                     sx={{
                                         m: 2,
                                         display: "flex",
@@ -166,6 +172,7 @@ export const HeroSection = () => {
                                 >
                                     saeed@signatureapp.de{" "}
                                     <IconButton
+                                        disabled={copied}
                                         onClick={handleCopy}
                                         sx={{
                                             ml: 2,
@@ -178,7 +185,7 @@ export const HeroSection = () => {
                                                 sx={{ color: "green" }}
                                             />
                                         ) : (
-                                            <BananaIcon />
+                                            <ContentCopyIcon />
                                         )}
                                     </IconButton>
                                 </Typography>

@@ -37,7 +37,7 @@ export const Footer = () => {
             <Typography color="primary">
                 {" "}
                 Armughan Saeed • saeed@signatureapp.de • 0157 31 355 159 •
-                Cologne, Germany ❤️
+                Cologne, Germany ❤️ 🍌
             </Typography>
         </Box>
     )

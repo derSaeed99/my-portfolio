@@ -1,6 +1,7 @@
-import { Box, Typography } from "@mui/material"
+import { Box, Typography, useTheme } from "@mui/material"
 
 export const BananaIcon = () => {
+    const theme = useTheme()
     return (
         <Box
             sx={{
@@ -17,7 +18,9 @@ export const BananaIcon = () => {
         >
             <Typography sx={{ fontSize: "1rem" }}>🍌</Typography>{" "}
             {/* Emoji size */}
-            <Typography sx={{ fontSize: "0.5rem", color: "#fff" }}>
+            <Typography
+                sx={{ fontSize: "0.5rem", color: theme.palette.primary.main }}
+            >
                 Collect
             </Typography>{" "}
             {/* Text size */}
