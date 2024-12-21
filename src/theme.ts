@@ -10,17 +10,17 @@ const theme = createTheme({
             main: "#FABC2A", // Secondary color
         },
         text: {
-            primary: "#000000", // Standard text color (black)
+            primary: "#3c3c3c", // Standard text color (black)
             secondary: "#FABC2A", // Secondary text color (for everything else)
         },
     },
     typography: {
         fontFamily: "Roboto, sans-serif", // Font for the application
         body1: {
-            color: "black", // Standard color for body1
+            color: "#3c3c3c", // Standard color for body1
         },
         body2: {
-            color: "black", // Standard color for body2
+            color: "#3c3c3c", // Standard color for body2
         },
         h1: {
             color: "#F05365", // Secondary color for headers (you can customize other header variants similarly)

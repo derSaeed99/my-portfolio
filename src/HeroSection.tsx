@@ -35,6 +35,7 @@ export const HeroSection = () => {
         navigator.clipboard.writeText("saeed@signatureapp.de").then(() => {
             setCopied(true)
             setTimeout(() => {
+                setAnchorEl(null)
                 setCopied(false)
             }, 2000)
         })
@@ -85,7 +86,17 @@ export const HeroSection = () => {
                     variant="h5"
                     sx={{ mr: 2, display: "flex", justifyContent: "flex-end" }}
                 >
-                    I'm a Web Developer
+                    I'm a{" "}
+                    <span
+                        style={{
+                            color: "#3c3c3c",
+                            marginLeft: 5,
+                            marginRight: 5,
+                        }}
+                    >
+                        Web
+                    </span>{" "}
+                    Developer
                 </Typography>
                 <Typography
                     variant="h5"
@@ -96,14 +107,24 @@ export const HeroSection = () => {
                         mr: 2,
                     }}
                 >
-                    I make Apps for Web
+                    I make{" "}
+                    <span
+                        style={{
+                            color: "#3c3c3c",
+                            marginLeft: 5,
+                            marginRight: 5,
+                        }}
+                    >
+                        Apps
+                    </span>{" "}
+                    for Web
                 </Typography>
                 <Typography
                     variant="h5"
                     gutterBottom
                     sx={{
                         mr: 2,
-                        color: "black",
+                        color: "#3c3c3c",
                         display: "flex",
                         justifyContent: "flex-end",
                     }}
@@ -217,7 +238,7 @@ export const HeroSection = () => {
                         style={{
                             objectFit: "cover",
                             overflow: "hidden",
-                            fill: "black",
+                            fill: "#3c3c3c",
                         }}
                     />
                 </Box>

@@ -1,4 +1,4 @@
-import { Box, Typography, useTheme, Grid } from "@mui/material"
+import { Box, Typography, Grid } from "@mui/material"
 import evolution from "./assets/evolution.png"
 import { motion } from "framer-motion"
 import { useState } from "react"
@@ -6,10 +6,6 @@ import { TypingText } from "./TypingText"
 
 export const AboutMe = () => {
     const [viewPort, setViewPort] = useState(false)
-    const theme = useTheme()
-    const screens = theme.breakpoints.values
-    const isXs = screens.xs
-
     return (
         <Grid
             id="about"
@@ -38,7 +34,7 @@ export const AboutMe = () => {
                         duration: 0.25,
                         delay: 0.2,
                     }}
-                    initial={{ opacity: 0, x: 0 }}
+                    initial={{ opacity: 0, x: 10 }}
                     animate={{
                         opacity: viewPort ? 1 : 0,
                         x: viewPort ? 0 : 5,
@@ -52,18 +48,13 @@ export const AboutMe = () => {
                     }}
                 />
             </Grid>
-            <Grid
-                item
-                xs={10}
-                sm={4}
-                sx={{
-                    display: "flex",
-                    flexDirection: "column",
-                    mx: isXs ? 2 : 0,
-                }}
-            >
+            <Grid item xs={11} sm={5}>
                 <motion.div
-                    style={{ width: "100%" }}
+                    style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                    }}
                     transition={{
                         duration: 0.25,
                         delay: 0.2,
