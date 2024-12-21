@@ -142,7 +142,7 @@ export const HeroSection = () => {
                             alignItems: "center",
                             justifyContent: "space-evenly",
                             borderRadius: 50,
-                            backgroundColor: theme.palette.primary.main,
+                            backgroundColor: theme.palette.secondary.main,
                         }}
                     >
                         <motion.div whileTap={{ scale: 2 }}>
@@ -150,7 +150,7 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://github.com/derSaeed99/"
                                 startIcon={<GitHub />}
-                                sx={{ color: theme.palette.secondary.main }}
+                                sx={{ color: theme.palette.primary.main }}
                             />
                         </motion.div>
                         <Divider orientation="vertical" />
@@ -159,7 +159,7 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://www.linkedin.com/in/armughan-saeed-35a8692ba/"
                                 startIcon={<LinkedIn />}
-                                sx={{ color: theme.palette.secondary.main }}
+                                sx={{ color: theme.palette.primary.main }}
                             />
                         </motion.div>
                         <Divider orientation="vertical" />
@@ -167,7 +167,7 @@ export const HeroSection = () => {
                             <Button
                                 onClick={handleClick}
                                 startIcon={<Mail />}
-                                sx={{ color: theme.palette.secondary.main }}
+                                sx={{ color: theme.palette.primary.main }}
                             />
                             <Popover
                                 open={open}
