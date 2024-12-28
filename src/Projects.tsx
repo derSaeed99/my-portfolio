@@ -5,6 +5,7 @@ import githubIcon from "./assets/github-icon.png"
 import agencyScreen from "./assets/agency.png"
 import ptottScreen from "./assets/ptott.png"
 import butaScreen from "./assets/buta.png"
+import themecreator from "./assets/themecreator.png"
 
 export const Projects = () => {
     return (
@@ -20,6 +21,53 @@ export const Projects = () => {
                 sx={{ display: "flex", alignItems: "flex-end", m: 2 }}
             >
                 {TypingText({ text: "Projects" })}
+            </Grid>
+            <Grid item xs={12} sm={4}>
+                <Card sx={{ mx: 2, height: "100%", borderRadius: 2 }}>
+                    <img
+                        alt="mui-theme-creator"
+                        src={themecreator}
+                        style={{ width: "100%" }}
+                    />
+                    <Box sx={{ p: 2 }}>
+                        <Typography>
+                            This is a Mui v6 Theme Creator. It lets you create a
+                            custom theme and animations. Users can copy code of
+                            the custom theme or download the theme file in
+                            different file formats like Ts,Js,JSON.
+                        </Typography>
+                    </Box>
+                    <Box
+                        sx={{
+                            display: "flex",
+                            justifyContent: "space-between",
+                            p: 2,
+                        }}
+                    >
+                        <Button
+                            target="_blank"
+                            href="https://github.com/derSaeed99/mui-theme-creator"
+                            variant="text"
+                            startIcon={
+                                <img
+                                    src={githubIcon}
+                                    alt="github-icon"
+                                    style={{ width: 20, marginBottom: 4 }}
+                                />
+                            }
+                        >
+                            View Code
+                        </Button>
+                        <Button
+                            target="_blank"
+                            href="https://muiv6-theme-creator.web.app/"
+                            variant="text"
+                            startIcon={<OpenInNewIcon />}
+                        >
+                            Visit
+                        </Button>
+                    </Box>
+                </Card>
             </Grid>
             <Grid item xs={12} sm={4}>
                 <Card sx={{ mx: 2, height: "100%", borderRadius: 2 }}>
