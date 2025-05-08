@@ -7,39 +7,81 @@ import {
     Grid,
     useTheme,
     Divider,
+    TextField,
+    InputAdornment,
+    Snackbar,
+    CircularProgress,
 } from "@mui/material"
 import monkey from "./assets/top-monkey.svg"
-import { GitHub, LinkedIn, Mail } from "@mui/icons-material"
+import { Close, GitHub, LinkedIn, Mail } from "@mui/icons-material"
 import { motion } from "framer-motion"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import CheckIcon from "@mui/icons-material/Check"
 import ContentCopyIcon from "@mui/icons-material/ContentCopy"
+import ContactMailIcon from "@mui/icons-material/ContactMail"
+import SendIcon from "@mui/icons-material/Send"
+import { useForm, ValidationError } from "@formspree/react"
 
 export const HeroSection = () => {
     const theme = useTheme()
-    const [viewPort, setViewPort] = useState(false)
-    const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null)
+    const [state, handleSubmit] = useForm("xqaqbwqv")
+    const [viewPort, setViewPort] = useState<boolean>(false)
+    const [snackBarOpen, setSnackBarOpen] = useState<boolean>(false)
+    const [email, setEmail] = useState<string>("")
+    const [anchorElEmail, setAnchorElEmail] =
+        useState<HTMLButtonElement | null>(null)
+    const [anchorElForm, setAnchorElForm] = useState<HTMLButtonElement | null>(
+        null
+    )
 
-    const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
-        setAnchorEl(event.currentTarget)
+    const handleClickEmailOpen = (
+        event: React.MouseEvent<HTMLButtonElement>
+    ) => {
+        setAnchorElEmail(event.currentTarget)
     }
 
-    const handleClose = () => {
-        setAnchorEl(null)
+    const handleClickFormOpen = (
+        event: React.MouseEvent<HTMLButtonElement>
+    ) => {
+        setAnchorElForm(event.currentTarget)
     }
-    const open = Boolean(anchorEl)
+
+    const handleCloseEmail = () => {
+        setAnchorElEmail(null)
+    }
+
+    const handleCloseForm = () => {
+        setAnchorElForm(null)
+        setEmail("")
+    }
+
+    const closeSnackbar = () => {
+        setSnackBarOpen(false)
+    }
+
+    const openEmail = Boolean(anchorElEmail)
+
+    const openForm = Boolean(anchorElForm)
 
     const [copied, setCopied] = useState(false)
+
+    useEffect(() => {
+        if (state.succeeded) {
+            setSnackBarOpen(true)
+            handleCloseForm()
+        }
+    }, [state.succeeded])
 
     const handleCopy = () => {
         navigator.clipboard.writeText("saeed@signatureapp.de").then(() => {
             setCopied(true)
             setTimeout(() => {
-                setAnchorEl(null)
+                setAnchorElEmail(null)
                 setCopied(false)
             }, 2000)
         })
     }
+
     return (
         <Grid
             id="home"
@@ -140,7 +182,6 @@ export const HeroSection = () => {
                         sx={{
                             display: "flex",
                             alignItems: "center",
-                            justifyContent: "space-evenly",
                             borderRadius: 50,
                             backgroundColor: theme.palette.secondary.main,
                         }}
@@ -150,7 +191,10 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://github.com/derSaeed99/"
                                 startIcon={<GitHub />}
-                                sx={{ color: theme.palette.primary.main }}
+                                sx={{
+                                    color: theme.palette.primary.main,
+                                    ml: 2,
+                                }}
                             />
                         </motion.div>
                         <Divider orientation="vertical" />
@@ -159,20 +203,26 @@ export const HeroSection = () => {
                                 target="_blank"
                                 href="https://www.linkedin.com/in/armughan-saeed-35a8692ba/"
                                 startIcon={<LinkedIn />}
-                                sx={{ color: theme.palette.primary.main }}
+                                sx={{
+                                    color: theme.palette.primary.main,
+                                    ml: 1,
+                                }}
                             />
                         </motion.div>
                         <Divider orientation="vertical" />
                         <motion.div whileTap={{ scale: 2 }}>
                             <Button
-                                onClick={handleClick}
+                                onClick={handleClickEmailOpen}
                                 startIcon={<Mail />}
-                                sx={{ color: theme.palette.primary.main }}
+                                sx={{
+                                    color: theme.palette.primary.main,
+                                    ml: 1,
+                                }}
                             />
                             <Popover
-                                open={open}
-                                anchorEl={anchorEl}
-                                onClose={handleClose}
+                                open={openEmail}
+                                anchorEl={anchorElEmail}
+                                onClose={handleCloseEmail}
                                 anchorOrigin={{
                                     vertical: "top",
                                     horizontal: "center",
@@ -214,7 +264,107 @@ export const HeroSection = () => {
                                 </Typography>
                             </Popover>
                         </motion.div>
+                        <Divider orientation="vertical" />
+                        <motion.div whileTap={{ scale: 2 }}>
+                            <Button
+                                onClick={handleClickFormOpen}
+                                startIcon={<ContactMailIcon />}
+                                sx={{
+                                    color: theme.palette.primary.main,
+                                    ml: 1,
+                                }}
+                            />
+                            <Popover
+                                open={openForm}
+                                anchorEl={anchorElForm}
+                                onClose={handleCloseForm}
+                                anchorOrigin={{
+                                    vertical: "top",
+                                    horizontal: "center",
+                                }}
+                                sx={{
+                                    width: "100%",
+                                    "& .MuiPopover-paper": {
+                                        backgroundColor:
+                                            theme.palette.primary.main,
+                                    },
+                                }}
+                            >
+                                <Box
+                                    component="form"
+                                    onSubmit={handleSubmit}
+                                    gap={2}
+                                    sx={{
+                                        p: 2,
+                                        display: "flex",
+                                        flexDirection: "column",
+                                    }}
+                                >
+                                    <Typography variant="button">
+                                        Get Contacted
+                                    </Typography>
+                                    <TextField
+                                        variant="standard"
+                                        autoComplete="off"
+                                        type="email"
+                                        required
+                                        name="email"
+                                        value={email}
+                                        onChange={(e) =>
+                                            setEmail(e.target.value)
+                                        }
+                                        placeholder="Email"
+                                        InputProps={{
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        type="submit"
+                                                        disabled={
+                                                            state.submitting
+                                                        }
+                                                    >
+                                                        {state.submitting ? (
+                                                            <CircularProgress
+                                                                color="secondary"
+                                                                size="1.5rem"
+                                                            />
+                                                        ) : (
+                                                            <SendIcon />
+                                                        )}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            ),
+                                        }}
+                                    />
+                                    <ValidationError
+                                        prefix="Email"
+                                        field="email"
+                                        errors={state.errors}
+                                    />
+                                </Box>
+                            </Popover>
+                        </motion.div>
                     </Box>
+                    {state.succeeded && snackBarOpen && (
+                        <Snackbar
+                            autoHideDuration={3000}
+                            onClose={closeSnackbar}
+                            anchorOrigin={{
+                                vertical: "top",
+                                horizontal: "center",
+                            }}
+                            ContentProps={{
+                                sx: {
+                                    backgroundColor: (theme) =>
+                                        theme.palette.warning.main,
+                                    color: "#fff",
+                                },
+                            }}
+                            open={snackBarOpen && state.succeeded}
+                            message={"Thanks! I'll answer you ASAP!"}
+                            action={<Close onClick={closeSnackbar} />}
+                        />
+                    )}
                 </Grid>
             </Grid>
             <Grid
