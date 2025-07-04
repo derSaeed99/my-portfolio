@@ -35,7 +35,6 @@ export const Footer = () => {
             }}
         >
             <Typography color="primary">
-                {" "}
                 Armughan Saeed • Cologne, Germany ❤️ 🍌
             </Typography>
         </Box>
